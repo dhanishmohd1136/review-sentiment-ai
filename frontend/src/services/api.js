@@ -7,7 +7,7 @@ export const API_BASE_URL = "http://localhost:8000";
 
 // Portfolio Social URL Placeholders (Configurable)
 export const LINKEDIN_URL = "https://www.linkedin.com/in/LINKEDIN_URL";
-export const GITHUB_URL = "https://github.com/GITHUB_URL";
+export const GITHUB_URL = "https://github.com/dhanishmohd1136/review-sentiment-ai";
 
 /**
  * Check backend service health status.

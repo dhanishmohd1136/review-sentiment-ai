@@ -114,82 +114,191 @@ Trained on 50,000 IMDB customer reviews with text normalization, custom negation
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started with the Project
 
-### Prerequisites
+Follow this guide to get the project cloned, configured, and running locally on your system.
 
-- **Node.js**: v18+ & npm
-- **Python**: v3.10+
-- **Docker & Docker Compose** (optional, recommended for production)
+### 📋 Prerequisites
 
----
-
-### Option 1: Run with Docker Compose (Recommended)
-
-Run both the FastAPI backend and Nginx-powered frontend with a single command:
-
-```bash
-docker compose up --build
-```
-
-- **Frontend Application**: [http://localhost:5173](http://localhost:5173)
-- **Backend API**: [http://localhost:8000](http://localhost:8000)
-- **Interactive API Docs (Swagger)**: [http://localhost:8000/docs](http://localhost:8000/docs)
+Ensure the following tools are installed on your workstation:
+- **Git**: [Download Git](https://git-scm.com/downloads)
+- **Python**: Version `3.10` or higher ([Download Python](https://www.python.org/downloads/))
+- **Node.js**: Version `18.0` or higher & npm ([Download Node.js](https://nodejs.org/))
+- **Docker & Docker Compose** *(Optional, recommended for instant one-command deployment)*: [Download Docker](https://www.docker.com/products/docker-desktop/)
 
 ---
 
-### Option 2: Run Locally (Development Mode)
+### 📥 1. Clone the Repository
 
-#### 1. Backend Setup
-
-```bash
-# Navigate to backend directory
-cd backend
-
-# Create and activate virtual environment
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Download required NLTK resources
-python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet')"
-
-# Start development server
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-The API will be live at `http://localhost:8000` (Swagger UI at `http://localhost:8000/docs`).
-
-#### 2. Frontend Setup
-
-In a separate terminal:
+Clone the repository to your local system and enter the project folder:
 
 ```bash
-# Navigate to frontend directory
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start Vite dev server
-npm run dev
+git clone https://github.com/dhanishmohd1136/review-sentiment-ai.git
+cd review-sentiment-ai
 ```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-### Option 3: Explore Machine Learning Notebooks
+### ⚡ 2. Quick Start with Docker Compose (Recommended)
 
-To run the exploratory data analysis and model training notebooks:
+The quickest way to run the entire stack (FastAPI backend + Vite/Nginx frontend) without needing to configure local Python or Node environments:
 
 ```bash
-cd ml
-pip install -r requirements.txt
-jupyter notebook notebooks/
+# Build images and start services in the background
+docker compose up --build -d
 ```
+
+#### Service URLs:
+- 🌐 **Frontend Application**: [http://localhost:5173](http://localhost:5173)
+- 🔌 **FastAPI REST API**: [http://localhost:8000](http://localhost:8000)
+- 📖 **Interactive Swagger Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- 🩺 **Health Check**: [http://localhost:8000/health](http://localhost:8000/health)
+
+#### Helpful Docker Commands:
+```bash
+# View live container logs
+docker compose logs -f
+
+# Check container status
+docker compose ps
+
+# Stop all containers
+docker compose down
+```
+
+---
+
+### 💻 3. Manual Local Development Setup (Without Docker)
+
+If you are developing or testing components locally, run the backend and frontend in separate terminals:
+
+#### Step 3.1: Start the Backend Service
+
+1. Open a terminal and navigate to the backend folder:
+   ```bash
+   cd backend
+   ```
+
+2. Create and activate a Python virtual environment:
+   - **Linux / macOS**:
+     ```bash
+     python3 -m venv .venv
+     source .venv/bin/activate
+     ```
+   - **Windows (Command Prompt / PowerShell)**:
+     ```cmd
+     python -m venv .venv
+     .venv\Scripts\activate
+     ```
+
+3. Install required Python packages:
+   ```bash
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+
+4. Download required NLTK corpora (WordNet lemmatizer & stopwords):
+   ```bash
+   python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet')"
+   ```
+
+5. Launch the FastAPI server:
+   ```bash
+   uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+   ```
+
+   The backend will start at `http://localhost:8000`. You can inspect the interactive documentation at `http://localhost:8000/docs`.
+
+---
+
+#### Step 3.2: Start the Frontend Application
+
+1. Open a **second terminal** window and navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the Vite development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to:
+   👉 **[http://localhost:5173](http://localhost:5173)**
+
+---
+
+#### Step 3.3: Exploring the Machine Learning Pipeline (Optional)
+
+To inspect exploratory data analysis, feature representations, and model training:
+
+1. Open a terminal and navigate to the `ml` directory:
+   ```bash
+   cd ml
+   ```
+
+2. Install ML experimentation dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Launch Jupyter:
+   ```bash
+   jupyter notebook notebooks/
+   ```
+
+   You can step through:
+   - `01_data_analysis.ipynb` — Distribution of reviews, rating counts, word clouds.
+   - `02_text_preprocessing.ipynb` — HTML tag stripping, regex cleaning, lemmatization benchmarks.
+   - `03_text_representation.ipynb` — CountVectorizer vs TF-IDF feature extraction.
+   - `04_model_experimentation.ipynb` — Logistic Regression, Naive Bayes, hyperparameter sweeps.
+   - `05_final_model.ipynb` — Final production pipeline serialization to `.pkl`.
+
+---
+
+### ✅ 4. Verifying Your Setup
+
+#### Quick Verification via Terminal (`curl`):
+```bash
+curl -X POST "http://localhost:8000/api/v1/predict" \
+     -H "Content-Type: application/json" \
+     -d '{"text": "The battery life on this laptop is incredible and the display is stunning!"}'
+```
+
+Expected JSON response:
+```json
+{
+  "sentiment": "positive",
+  "confidence": 0.9612,
+  "probabilities": {
+    "negative": 0.0388,
+    "positive": 0.9612
+  },
+  "clean_text": "battery life laptop incredible display stunning"
+}
+```
+
+#### Verification via Web UI:
+1. Open [http://localhost:5173](http://localhost:5173).
+2. The telemetry badge in the top right will indicate `STATUS: ONLINE • 200 OK`.
+3. Click any customer card on the Bauhaus coverflow slider or paste your own review.
+4. Hit **RUN INFERENCE** to see real-time classification, probability distribution, confidence meter, and cleaned token telemetry.
+
+---
+
+### ❓ Troubleshooting
+
+| Issue | Root Cause | Solution |
+| :--- | :--- | :--- |
+| `Resource stopwords not found` | NLTK stopwords/wordnet corpus missing | Run: `python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet')"` |
+| `Port 8000 already in use` | Another process is occupying port 8000 | Kill process: `lsof -ti:8000 \| xargs kill -9` or run uvicorn on `--port 8001` |
+| `Port 5173 already in use` | Another Vite server is active | Vite will automatically offer port 5174, or run: `npm run dev -- --port 5174` |
+| `ERR_CONNECTION_REFUSED` in UI | Backend server is offline | Confirm FastAPI is running via `http://localhost:8000/health` |
 
 ---
 
