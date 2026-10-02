@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REVIEW//AI • Customer Review Sentiment Analysis | Muhammed Dhanish</title>
+  <meta name="description" content="Production-quality Customer Review Sentiment Analysis interface built with Bauhaus-inspired Neo-Brutalism, Swiss typography, and FastAPI by Muhammed Dhanish." />
+  
+  <!-- Swiss International Typographic Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- ======================================================================
+       STICKY NAVBAR
+       ====================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container nav-row">
+      <!-- Left: REVIEW//AI Brand + Geometric Indicator -->
+      <a href="#hero" class="brand-group" aria-label="REVIEW//AI Home">
+        <div class="brand-geometric-symbol" aria-hidden="true">
+          <span class="symbol-circle"></span>
+          <span class="symbol-square"></span>
+          <span class="symbol-rect"></span>
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-title">REVIEW//AI</span>
+          <span class="brand-subtitle">SENTIMENT INTELLIGENCE</span>
+        </div>
+      </a>
+
+      <!-- Right: Navigation Links & Live Status Capsule -->
+      <div class="nav-actions">
+        <nav aria-label="Main Navigation">
+          <ul class="nav-links-list">
+            <li><a href="#analyzer" class="nav-link-btn">ANALYZER</a></li>
+            <li><a href="#how-it-works" class="nav-link-btn">HOW IT WORKS</a></li>
+            <li><a href="#technology" class="nav-link-btn">TECHNOLOGY</a></li>
+            <li><a href="#model" class="nav-link-btn">MODEL</a></li>
+            <li><a href="#about" class="nav-link-btn">ABOUT</a></li>
+          </ul>
+        </nav>
+
+        <!-- Compact System Status Pill -->
+        <div class="system-status-capsule" title="FastAPI Engine Telemetry">
+          <span id="apiStatusDot" class="status-dot-indicator"></span>
+          <span id="apiStatusText" class="status-label-text">API ONLINE</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ======================================================================
+         SECTION 01 — HERO
+         ====================================================================== -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
+      <div class="container hero-layout-grid">
+        <!-- Left: Oversized Typography, Subtitle & CTAs -->
+        <div class="hero-content-col">
+          <div class="hero-pill-badge">
+            <span>TF-IDF × LOGISTIC REGRESSION</span>
+          </div>
+
+          <h1 id="hero-title" class="hero-main-heading">
+            <span>TURN REVIEWS</span>
+            <span>INTO SIGNAL.</span>
+          </h1>
+
+          <p class="hero-supporting-line">
+            AI-powered customer review sentiment analysis.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#analyzer" class="btn-hero-primary">ANALYZE A REVIEW →</a>
+            <a href="#how-it-works" class="btn-hero-secondary">HOW IT WORKS ↓</a>
+          </div>
+        </div>
+
+        <!-- Right: Bauhaus Geometric Shapes Montage -->
+        <div class="hero-art-col" aria-hidden="true">
+          <div class="bauhaus-art-canvas">
+            <div class="shape-cross-line-h"></div>
+            <div class="shape-cross-line-v"></div>
+            <div class="shape-diagonal-line"></div>
+            <div class="shape-red-circle"></div>
+            <div class="shape-blue-rectangle"></div>
+            <div class="shape-yellow-square"></div>
+            <div class="shape-orange-block"></div>
+            <div class="art-imprint-stamp">AI × DATA × DESIGN</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Telemetry Banner -->
+    <section class="model-info-strip" aria-label="Model specification telemetry">
+      <div class="container info-strip-inner">
+        <div class="info-strip-item">
+          <span class="info-square-accent yellow" aria-hidden="true"></span>
+          <span class="info-strip-val">TF-IDF + LOGISTIC REGRESSION</span>
+        </div>
+        <div class="info-strip-item">
+          <span class="info-square-accent red" aria-hidden="true"></span>
+          <span class="info-strip-val">BINARY SENTIMENT CLASSIFICATION</span>
+        </div>
+        <div class="info-strip-item">
+          <span class="info-square-accent blue" aria-hidden="true"></span>
+          <span class="info-strip-val">20,000 N-GRAM FEATURES</span>
+          <span class="info-strip-tag" id="latencyBadge">4ms LATENCY</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 02 — LIVE ANALYZER
+         ====================================================================== -->
+    <section id="analyzer" class="section-block scroll-target" aria-labelledby="analyzer-heading">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header-block">
+          <span class="section-numeric-tag">01 / ANALYZE</span>
+          <h2 id="analyzer-heading" class="section-primary-heading">WHAT DOES THE CUSTOMER THINK?</h2>
+        </div>
+
+        <!-- Two-Column Workspace -->
+        <div class="analyzer-studio-grid">
+          
+          <!-- Left Panel: Review Input -->
+          <div class="studio-panel">
+            <div class="panel-title-bar">
+              <h3 class="panel-title-text">REVIEW INPUT</h3>
+              <span id="charCounter" class="char-counter-tag">0 / 5000</span>
+            </div>
+
+            <div class="panel-content-body">
+              <!-- Example Test Buttons -->
+              <div class="example-chips-wrapper">
+                <div class="chips-header-label">Load sample customer review:</div>
+                <div class="chips-flex-row">
+                  <button type="button" class="chip-action-btn" data-example-key="positive">
+                    EXCELLENT PRODUCT
+                  </button>
+                  <button type="button" class="chip-action-btn" data-example-key="negative">
+                    POOR SERVICE
+                  </button>
+                  <button type="button" class="chip-action-btn" data-example-key="average">
+                    AVERAGE EXPERIENCE
+                  </button>
+                </div>
+              </div>
+
+              <!-- Large Input Textarea -->
+              <div class="textarea-container">
+                <label for="reviewInput" class="visually-hidden" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">
+                  Customer review text input
+                </label>
+                <textarea
+                  id="reviewInput"
+                  class="studio-textarea"
+                  placeholder="Write or paste a customer review..."
+                  aria-label="Customer review text"
+                  spellcheck="true"
+                ></textarea>
+              </div>
+
+              <!-- Action Buttons Row -->
+              <div class="analyzer-btn-row">
+                <button type="button" id="analyzeBtn" class="btn-analyze-primary" aria-label="Analyze customer review">
+                  <span id="analyzeBtnText">ANALYZE REVIEW →</span>
+                  <!-- Stepper Loading Indicator -->
+                  <span id="geometricLoader" class="loading-stepper-box" aria-hidden="true">
+                    <span class="stepper-square s1"></span>
+                    <span class="stepper-square s2"></span>
+                    <span class="stepper-square s3"></span>
+                  </span>
+                </button>
+
+                <button type="button" id="clearBtn" class="btn-clear-secondary" aria-label="Clear review text">
+                  CLEAR
+                </button>
+              </div>
+
+              <!-- Error Banner Panel -->
+              <div id="errorPanel" class="error-banner-panel" role="alert" aria-live="assertive">
+                <div class="error-title-row">
+                  <span aria-hidden="true">■</span>
+                  <span>ANALYSIS FAILED</span>
+                </div>
+                <p id="errorMessage" class="error-message-body"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Panel: Prediction Result Panel -->
+          <div class="studio-panel">
+            <div class="panel-title-bar">
+              <h3 class="panel-title-text">PREDICTION</h3>
+              <span class="char-counter-tag">TELEMETRY // OUTPUT</span>
+            </div>
+
+            <div class="panel-content-body" aria-live="polite">
+              <!-- Standby Placeholder View -->
+              <div id="resultStandbyView" class="result-standby-view">
+                <div class="standby-icon" aria-hidden="true">[ // ]</div>
+                <div class="standby-status-headline">WAITING FOR REVIEW</div>
+                <p class="standby-message">
+                  ENTER OR SELECT A REVIEW ON THE LEFT TO EXECUTE MODEL INFERENCE
+                </p>
+              </div>
+
+              <!-- Active Result View (Populated from real FastAPI response) -->
+              <div id="resultActiveView" class="result-active-view">
+                
+                <!-- Giant Sentiment Banner -->
+                <div id="sentimentHeroBanner" class="sentiment-hero-banner positive">
+                  <div class="sentiment-eyebrow-tag">PREDICTED SENTIMENT</div>
+                  <div id="sentimentHeadlineHuge" class="sentiment-headline-huge">POSITIVE</div>
+                  <div id="sentimentStatusPill" class="sentiment-status-pill">VERIFIED // 97.4% FAVORABLE</div>
+                </div>
+
+                <!-- Confidence Metric & Animated Bar -->
+                <div class="confidence-metric-block">
+                  <div class="confidence-row-header">
+                    <span class="metric-section-label">CONFIDENCE</span>
+                    <span id="confidencePercentageDisplay" class="confidence-percentage-display">97.4%</span>
+                  </div>
+
+                  <div class="confidence-bar-track" role="progressbar" aria-label="Confidence metric" aria-valuemin="0" aria-valuemax="100">
+                    <div id="confidenceBarFill" class="confidence-bar-fill positive" style="width: 0%;"></div>
+                  </div>
+
+                  <div class="confidence-ticks-scale" aria-hidden="true">
+                    <span>0%</span>
+                    <span>25%</span>
+                    <span>50%</span>
+                    <span>75%</span>
+                    <span>100%</span>
+                  </div>
+                </div>
+
+                <!-- Probability Distribution Breakdown -->
+                <div class="probability-breakdown-card">
+                  <div class="metric-section-label" style="margin-bottom: 0.85rem;">PROBABILITY DISTRIBUTION</div>
+
+                  <!-- Positive Probability Bar -->
+                  <div class="prob-entry">
+                    <div class="prob-entry-header">
+                      <span class="prob-tag pos">POSITIVE</span>
+                      <span id="probPositiveVal" class="prob-number">97.4%</span>
+                    </div>
+                    <div class="prob-meter-track">
+                      <div id="probPositiveFill" class="prob-meter-fill pos" style="width: 0%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Negative Probability Bar -->
+                  <div class="prob-entry">
+                    <div class="prob-entry-header">
+                      <span class="prob-tag neg">NEGATIVE</span>
+                      <span id="probNegativeVal" class="prob-number">2.6%</span>
+                    </div>
+                    <div class="prob-meter-track">
+                      <div id="probNegativeFill" class="prob-meter-fill neg" style="width: 0%;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Processed Text Block -->
+                <div class="processed-text-card">
+                  <div class="processed-meta-header">
+                    <span class="telemetry-badge">PROCESSED TEXT</span>
+                    <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-muted);">NLTK CLEANED</span>
+                  </div>
+
+                  <div id="cleanTextViewport" class="clean-text-viewport" aria-label="Preprocessed review text">
+                    (Awaiting prediction)
+                  </div>
+
+                  <div id="tokensFlexGrid" class="tokens-flex-grid"></div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 03 — HOW IT WORKS (PIPELINE)
+         ====================================================================== -->
+    <section id="how-it-works" class="section-block scroll-target" aria-labelledby="pipeline-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">02 / PIPELINE</span>
+          <h2 id="pipeline-heading" class="section-primary-heading">FROM TEXT TO PREDICTION.</h2>
+        </div>
+
+        <!-- Connected Machine Learning Pipeline -->
+        <div class="pipeline-flow-wrapper">
+          
+          <!-- Stage 1: Customer Review -->
+          <div class="pipeline-node-card">
+            <div class="node-badge-row">
+              <span class="node-step-tag">STAGE 01</span>
+              <span class="node-type-label">INPUT</span>
+            </div>
+            <h3 class="node-title">CUSTOMER REVIEW</h3>
+            <div class="node-sample-box">
+              <span class="quote-mark">“</span>
+              <p>The product is amazing and I love it.</p>
+            </div>
+          </div>
+
+          <!-- Connector Arrow -->
+          <div class="pipeline-connector-arrow" aria-hidden="true">
+            <span class="connector-line"></span>
+            <span class="connector-glyph">↓</span>
+          </div>
+
+          <!-- Stage 2: Text Preprocessing -->
+          <div class="pipeline-node-card">
+            <div class="node-badge-row">
+              <span class="node-step-tag yellow">STAGE 02</span>
+              <span class="node-type-label">NORMALIZATION</span>
+            </div>
+            <h3 class="node-title">TEXT PREPROCESSING</h3>
+            <div class="tags-cluster-row">
+              <span class="mini-tag">LOWERCASE</span>
+              <span class="mini-tag">REMOVE HTML</span>
+              <span class="mini-tag">REMOVE URLS</span>
+              <span class="mini-tag">TOKENIZATION</span>
+              <span class="mini-tag">STOPWORD REMOVAL</span>
+              <span class="mini-tag">LEMMATIZATION</span>
+            </div>
+          </div>
+
+          <!-- Connector Arrow -->
+          <div class="pipeline-connector-arrow" aria-hidden="true">
+            <span class="connector-line"></span>
+            <span class="connector-glyph">↓</span>
+          </div>
+
+          <!-- Stage 3: TF-IDF -->
+          <div class="pipeline-node-card">
+            <div class="node-badge-row">
+              <span class="node-step-tag blue">STAGE 03</span>
+              <span class="node-type-label">VECTORIZATION</span>
+            </div>
+            <h3 class="node-title">TF-IDF</h3>
+            <div class="formula-capsule">
+              <span>TERM FREQUENCY</span>
+              <span class="plus-glyph">+</span>
+              <span>INVERSE DOCUMENT FREQUENCY</span>
+            </div>
+            <p class="node-summary-text">
+              Converts text into numerical features based on how important each word is across the dataset.
+            </p>
+          </div>
+
+          <!-- Connector Arrow -->
+          <div class="pipeline-connector-arrow" aria-hidden="true">
+            <span class="connector-line"></span>
+            <span class="connector-glyph">↓</span>
+          </div>
+
+          <!-- Stage 4: Logistic Regression -->
+          <div class="pipeline-node-card">
+            <div class="node-badge-row">
+              <span class="node-step-tag red">STAGE 04</span>
+              <span class="node-type-label">CLASSIFIER</span>
+            </div>
+            <h3 class="node-title">LOGISTIC REGRESSION</h3>
+            <div class="flow-chips-row">
+              <span class="flow-chip">FEATURE VECTOR</span>
+              <span class="flow-arrow">→</span>
+              <span class="flow-chip">PROBABILITY</span>
+              <span class="flow-arrow">→</span>
+              <span class="flow-chip">CLASS</span>
+            </div>
+            <p class="node-summary-text">
+              Uses the TF-IDF features to estimate the probability of each sentiment class.
+            </p>
+          </div>
+
+          <!-- Connector Arrow -->
+          <div class="pipeline-connector-arrow" aria-hidden="true">
+            <span class="connector-line"></span>
+            <span class="connector-glyph">↓</span>
+          </div>
+
+          <!-- Stage 5: Output -->
+          <div class="pipeline-node-card output-card">
+            <div class="node-badge-row">
+              <span class="node-step-tag green">STAGE 05</span>
+              <span class="node-type-label">INFERENCE RESULT</span>
+            </div>
+            <h3 class="node-title">SENTIMENT OUTPUT</h3>
+            <div class="output-split-blocks">
+              <div class="output-pill-block pos">POSITIVE</div>
+              <div class="output-split-divider">/</div>
+              <div class="output-pill-block neg">NEGATIVE</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 04 — TEXT PREPROCESSING
+         ====================================================================== -->
+    <section id="preprocessing" class="section-block" aria-labelledby="preproc-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">03 / PREPROCESSING</span>
+          <h2 id="preproc-heading" class="section-primary-heading">CLEAN TEXT. BETTER FEATURES.</h2>
+        </div>
+
+        <!-- Sequential Pipeline Steps Strip -->
+        <div class="preproc-steps-chain">
+          <div class="chain-step-box">
+            <span class="chain-step-num">01</span>
+            <span class="chain-step-title">RAW TEXT</span>
+          </div>
+          <span class="chain-arrow" aria-hidden="true">→</span>
+          <div class="chain-step-box">
+            <span class="chain-step-num">02</span>
+            <span class="chain-step-title">LOWERCASE</span>
+          </div>
+          <span class="chain-arrow" aria-hidden="true">→</span>
+          <div class="chain-step-box">
+            <span class="chain-step-num">03</span>
+            <span class="chain-step-title">HTML / URL REMOVAL</span>
+          </div>
+          <span class="chain-arrow" aria-hidden="true">→</span>
+          <div class="chain-step-box">
+            <span class="chain-step-num">04</span>
+            <span class="chain-step-title">TEXT NORMALIZATION</span>
+          </div>
+          <span class="chain-arrow" aria-hidden="true">→</span>
+          <div class="chain-step-box">
+            <span class="chain-step-num">05</span>
+            <span class="chain-step-title">TOKENIZATION</span>
+          </div>
+          <span class="chain-arrow" aria-hidden="true">→</span>
+          <div class="chain-step-box">
+            <span class="chain-step-num">06</span>
+            <span class="chain-step-title">STOPWORD REMOVAL</span>
+          </div>
+          <span class="chain-arrow" aria-hidden="true">→</span>
+          <div class="chain-step-box">
+            <span class="chain-step-num">07</span>
+            <span class="chain-step-title">LEMMATIZATION</span>
+          </div>
+          <span class="chain-arrow" aria-hidden="true">→</span>
+          <div class="chain-step-box accent">
+            <span class="chain-step-num">08</span>
+            <span class="chain-step-title">CLEAN TEXT</span>
+          </div>
+        </div>
+
+        <!-- Before / After Visual Comparison Box -->
+        <div class="comparison-dual-grid">
+          <!-- Before Card -->
+          <div class="comparison-card raw">
+            <div class="comp-badge raw">RAW INPUT</div>
+            <p class="comp-text">
+              "This PRODUCT is AMAZING!!! Visit www.example.com"
+            </p>
+            <div class="comp-meta">
+              <span class="meta-label">NOISE DETECTED:</span>
+              <span class="meta-item">Capitalization</span>
+              <span class="meta-item">Exclamation marks</span>
+              <span class="meta-item">Hyperlink URL</span>
+              <span class="meta-item">Stopwords ("this", "is")</span>
+            </div>
+          </div>
+
+          <!-- Visual Arrow -->
+          <div class="comparison-center-arrow" aria-hidden="true">
+            <div class="arrow-circle">→</div>
+          </div>
+
+          <!-- After Card -->
+          <div class="comparison-card clean">
+            <div class="comp-badge clean">CLEAN FEATURES</div>
+            <p class="comp-text">
+              "product amazing"
+            </p>
+            <div class="comp-meta">
+              <span class="meta-label">RETAINED SIGNAL:</span>
+              <span class="meta-item success">lemmatized nouns ("product")</span>
+              <span class="meta-item success">high-valence adjective ("amazing")</span>
+              <span class="meta-item success">pure semantic vector tokens</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 05 — TF-IDF
+         ====================================================================== -->
+    <section id="tfidf" class="section-block" aria-labelledby="tfidf-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">04 / FEATURE ENGINEERING</span>
+          <h2 id="tfidf-heading" class="section-primary-heading">WORDS → NUMBERS.</h2>
+        </div>
+
+        <!-- 3 Compact Explanatory Blocks -->
+        <div class="triplet-cards-grid">
+          
+          <!-- Block 1: TF -->
+          <div class="triplet-block-card">
+            <div class="card-corner-tag">01 / LOCAL</div>
+            <h3 class="triplet-title">TF</h3>
+            <div class="triplet-subtitle">TERM FREQUENCY</div>
+            <p class="triplet-desc">
+              "How often a word appears in a document."
+            </p>
+            <div class="triplet-footer-tag">Document Context</div>
+          </div>
+
+          <!-- Block 2: IDF -->
+          <div class="triplet-block-card">
+            <div class="card-corner-tag yellow">02 / GLOBAL</div>
+            <h3 class="triplet-title">IDF</h3>
+            <div class="triplet-subtitle">INVERSE DOCUMENT FREQUENCY</div>
+            <p class="triplet-desc">
+              "How rare the word is across documents."
+            </p>
+            <div class="triplet-footer-tag">Corpus Dispersion</div>
+          </div>
+
+          <!-- Block 3: TF-IDF -->
+          <div class="triplet-block-card accent">
+            <div class="card-corner-tag blue">03 / PRODUCT</div>
+            <h3 class="triplet-title">TF-IDF</h3>
+            <div class="triplet-subtitle">FINAL WEIGHT</div>
+            <p class="triplet-desc">
+              "High when a word is important to one document but uncommon across the dataset."
+            </p>
+            <div class="triplet-footer-tag">Discriminative Power</div>
+          </div>
+
+        </div>
+
+        <!-- Conceptual Weight Comparison Visualizer -->
+        <div class="conceptual-weights-card">
+          <div class="concept-header">
+            <span class="concept-title">CONCEPTUAL FEATURE WEIGHT BREAKDOWN</span>
+            <span class="concept-badge">SAMPLE CORPUS WEIGHTING</span>
+          </div>
+
+          <div class="weights-list">
+            <!-- Word 1 -->
+            <div class="weight-row">
+              <div class="word-col">
+                <span class="word-name">"excellent"</span>
+                <span class="word-desc">High sentiment signal, low generic dispersion</span>
+              </div>
+              <div class="weight-bar-col">
+                <div class="weight-bar-track">
+                  <div class="weight-bar-fill high" style="width: 86%;"></div>
+                </div>
+              </div>
+              <div class="weight-val-col">HIGH WEIGHT</div>
+            </div>
+
+            <!-- Word 2 -->
+            <div class="weight-row">
+              <div class="word-col">
+                <span class="word-name">"product"</span>
+                <span class="word-desc">Common topic noun, moderate discrimination</span>
+              </div>
+              <div class="weight-bar-col">
+                <div class="weight-bar-track">
+                  <div class="weight-bar-fill medium" style="width: 42%;"></div>
+                </div>
+              </div>
+              <div class="weight-val-col">MEDIUM WEIGHT</div>
+            </div>
+
+            <!-- Word 3 -->
+            <div class="weight-row">
+              <div class="word-col">
+                <span class="word-name">"the"</span>
+                <span class="word-desc">Ubiquitous grammatical article (Stopword filtered)</span>
+              </div>
+              <div class="weight-bar-col">
+                <div class="weight-bar-track">
+                  <div class="weight-bar-fill low" style="width: 0%;"></div>
+                </div>
+              </div>
+              <div class="weight-val-col">ZERO (FILTERED)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 06 — MODEL (CLASSIFICATION)
+         ====================================================================== -->
+    <section id="model" class="section-block scroll-target" aria-labelledby="model-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">05 / CLASSIFICATION</span>
+          <h2 id="model-heading" class="section-primary-heading">HOW THE MODEL DECIDES.</h2>
+        </div>
+
+        <!-- Model Decision Pipeline Flow -->
+        <div class="decision-pipeline-strip">
+          <div class="decision-stage-box">
+            <span class="dec-num">STEP 1</span>
+            <span class="dec-title">TF-IDF VECTOR</span>
+            <span class="dec-meta">20,000 Dimensions</span>
+          </div>
+          <span class="dec-arrow" aria-hidden="true">→</span>
+          <div class="decision-stage-box">
+            <span class="dec-num">STEP 2</span>
+            <span class="dec-title">LOGISTIC REGRESSION</span>
+            <span class="dec-meta">Linear Boundary (w·x + b)</span>
+          </div>
+          <span class="dec-arrow" aria-hidden="true">→</span>
+          <div class="decision-stage-box">
+            <span class="dec-num">STEP 3</span>
+            <span class="dec-title">CLASS PROBABILITY</span>
+            <span class="dec-meta">Sigmoid σ(z)</span>
+          </div>
+          <span class="dec-arrow" aria-hidden="true">→</span>
+          <div class="decision-stage-box accent">
+            <span class="dec-num">STEP 4</span>
+            <span class="dec-title">SENTIMENT</span>
+            <span class="dec-meta">Argmax Decision</span>
+          </div>
+        </div>
+
+        <!-- Decision Explanation Grid -->
+        <div class="decision-explanation-grid">
+          
+          <!-- Mathematical Principle Card -->
+          <div class="explanation-card">
+            <h3 class="card-subheading">PROBABILITY ESTIMATION</h3>
+            <p class="card-body-text">
+              The trained Logistic Regression classifier receives the TF-IDF feature vector and estimates the probability of each sentiment class.
+            </p>
+            <div class="formula-visual-box">
+              <code>P(Positive) = 1 / (1 + e^-(w·x + b))</code>
+              <code>P(Negative) = 1 - P(Positive)</code>
+            </div>
+            <div class="clarity-note">
+              <strong>STATISTICAL INFERENCE NOTE:</strong> Logistic Regression performs deterministic mathematical classification over n-gram feature frequencies; it does not claim semantic language comprehension like an LLM.
+            </div>
+          </div>
+
+          <!-- Argmax Classifier Graphic -->
+          <div class="explanation-card">
+            <h3 class="card-subheading">ARGMAX DECISION BOUNDARY</h3>
+            <div class="argmax-graphic-box">
+              <div class="prob-comparison-row">
+                <span class="prob-class-label">P(Positive)</span>
+                <div class="graphic-bar-container">
+                  <div class="graphic-bar-fill pos" style="width: 93.5%;">93.5%</div>
+                </div>
+              </div>
+              <div class="prob-comparison-row">
+                <span class="prob-class-label">P(Negative)</span>
+                <div class="graphic-bar-container">
+                  <div class="graphic-bar-fill neg" style="width: 6.5%;">6.5%</div>
+                </div>
+              </div>
+              
+              <div class="argmax-connector-row">
+                <span class="connector-label">ARGMAX DECISION</span>
+                <span class="connector-arrow-glyph">↓</span>
+              </div>
+
+              <div class="final-class-banner pos">
+                FINAL CLASS: POSITIVE
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 07 — MODEL INFORMATION / MODEL STACK
+         ====================================================================== -->
+    <section id="technology" class="section-block scroll-target" aria-labelledby="tech-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">06 / MODEL STACK</span>
+          <h2 id="tech-heading" class="section-primary-heading">THE TECHNOLOGY BEHIND THE PREDICTION.</h2>
+        </div>
+
+        <!-- 6 Visual Technology Blocks -->
+        <div class="tech-stack-cards-grid">
+          
+          <!-- Block 1 -->
+          <div class="tech-item-card">
+            <span class="tech-category-label">TEXT PROCESSING</span>
+            <div class="tech-title-list">
+              <span class="tech-item-name">NLTK</span>
+              <span class="tech-item-name">Regular Expressions</span>
+            </div>
+            <p class="tech-desc">WordNet lemmatization, tokenization, and regex cleaning.</p>
+          </div>
+
+          <!-- Block 2 -->
+          <div class="tech-item-card">
+            <span class="tech-category-label">FEATURE EXTRACTION</span>
+            <div class="tech-title-list">
+              <span class="tech-item-name">TF-IDF</span>
+              <span class="tech-item-name">scikit-learn</span>
+            </div>
+            <p class="tech-desc">TfidfVectorizer with 20,000 sublinear unigram & bigram features.</p>
+          </div>
+
+          <!-- Block 3 -->
+          <div class="tech-item-card">
+            <span class="tech-category-label">CLASSIFIER</span>
+            <div class="tech-title-list">
+              <span class="tech-item-name">Logistic Regression</span>
+              <span class="tech-item-name">scikit-learn</span>
+            </div>
+            <p class="tech-desc">L2 regularized linear model yielding calibrated class probabilities.</p>
+          </div>
+
+          <!-- Block 4 -->
+          <div class="tech-item-card">
+            <span class="tech-category-label">API</span>
+            <div class="tech-title-list">
+              <span class="tech-item-name">FastAPI</span>
+              <span class="tech-item-name">Pydantic</span>
+            </div>
+            <p class="tech-desc">Asynchronous ASGI backend with sub-10ms latency and CORS.</p>
+          </div>
+
+          <!-- Block 5 -->
+          <div class="tech-item-card">
+            <span class="tech-category-label">DEPLOYMENT</span>
+            <div class="tech-title-list">
+              <span class="tech-item-name">Docker</span>
+              <span class="tech-item-name">Docker Compose</span>
+            </div>
+            <p class="tech-desc">Reproducible containerization for unified development and production.</p>
+          </div>
+
+          <!-- Block 6 -->
+          <div class="tech-item-card">
+            <span class="tech-category-label">FRONTEND</span>
+            <div class="tech-title-list">
+              <span class="tech-item-name">Vanilla JavaScript</span>
+              <span class="tech-item-name">Vite & CSS3</span>
+            </div>
+            <p class="tech-desc">Bauhaus Neo-Brutalist design system with zero bloated runtime frameworks.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 08 — MODEL EVALUATION
+         ====================================================================== -->
+    <section id="evaluation" class="section-block" aria-labelledby="eval-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">07 / EVALUATION</span>
+          <h2 id="eval-heading" class="section-primary-heading">HOW WELL DOES IT PERFORM?</h2>
+        </div>
+
+        <!-- 4 Large Metrics Cards (Actual Test Set Values) -->
+        <div class="metrics-quad-grid">
+          
+          <!-- Metric 1: Accuracy -->
+          <div class="metric-big-card">
+            <span class="metric-card-label">ACCURACY</span>
+            <div class="metric-giant-number">91.96%</div>
+            <p class="metric-card-desc">"Overall correct predictions."</p>
+            <div class="metric-meter-bar">
+              <div class="metric-fill-bar" style="width: 91.96%;"></div>
+            </div>
+          </div>
+
+          <!-- Metric 2: Precision -->
+          <div class="metric-big-card">
+            <span class="metric-card-label">PRECISION</span>
+            <div class="metric-giant-number">90.86%</div>
+            <p class="metric-card-desc">"Correct positive predictions among predicted positives."</p>
+            <div class="metric-meter-bar">
+              <div class="metric-fill-bar" style="width: 90.86%;"></div>
+            </div>
+          </div>
+
+          <!-- Metric 3: Recall -->
+          <div class="metric-big-card">
+            <span class="metric-card-label">RECALL</span>
+            <div class="metric-giant-number">93.30%</div>
+            <p class="metric-card-desc">"Positive cases correctly identified."</p>
+            <div class="metric-meter-bar">
+              <div class="metric-fill-bar" style="width: 93.30%;"></div>
+            </div>
+          </div>
+
+          <!-- Metric 4: F1 Score -->
+          <div class="metric-big-card accent">
+            <span class="metric-card-label">F1 SCORE</span>
+            <div class="metric-giant-number">92.07%</div>
+            <p class="metric-card-desc">"Balance between precision and recall."</p>
+            <div class="metric-meter-bar">
+              <div class="metric-fill-bar accent" style="width: 92.07%;"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Evaluation Telemetry Callout -->
+        <div class="evaluation-telemetry-strip">
+          <div class="telemetry-point">
+            <span class="telemetry-label">TEST SAMPLES:</span>
+            <span class="telemetry-value">10,000 Verified Reviews</span>
+          </div>
+          <div class="telemetry-point">
+            <span class="telemetry-label">FEATURE MATRIX:</span>
+            <span class="telemetry-value">20,000 TF-IDF N-Grams</span>
+          </div>
+          <div class="telemetry-point">
+            <span class="telemetry-label">VALIDATION PROTOCOL:</span>
+            <span class="telemetry-value">Stratified Holdout Split</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 09 — REPRESENTATION
+         ====================================================================== -->
+    <section id="representation" class="section-block" aria-labelledby="rep-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">08 / TEXT REPRESENTATION</span>
+          <h2 id="rep-heading" class="section-primary-heading">WHY REPRESENTATION MATTERS.</h2>
+        </div>
+
+        <p class="section-sub-intro">
+          Machine-learning models cannot directly consume raw text. Words must be mapped into structured numerical vector spaces.
+        </p>
+
+        <!-- Linear Vector Mapping Strip -->
+        <div class="representation-flow-strip">
+          <div class="rep-flow-box">
+            <span class="rep-flow-title">RAW TEXT</span>
+            <span class="rep-flow-desc">Unstructured Strings</span>
+          </div>
+          <span class="rep-flow-arrow" aria-hidden="true">→</span>
+          <div class="rep-flow-box accent">
+            <span class="rep-flow-title">NUMERICAL REPRESENTATION</span>
+            <span class="rep-flow-desc">TF-IDF Vector Space</span>
+          </div>
+          <span class="rep-flow-arrow" aria-hidden="true">→</span>
+          <div class="rep-flow-box">
+            <span class="rep-flow-title">MACHINE LEARNING MODEL</span>
+            <span class="rep-flow-desc">Logistic Regression</span>
+          </div>
+        </div>
+
+        <!-- 3 Feature Representations Compared -->
+        <div class="representation-comparison-grid">
+          
+          <!-- Method 1: BoW -->
+          <div class="rep-method-card">
+            <div class="rep-card-head">
+              <h3 class="rep-name">BoW</h3>
+              <span class="rep-tag">BASELINE</span>
+            </div>
+            <p class="rep-definition">"Counts word occurrences."</p>
+            <div class="rep-benchmark-val">
+              <span class="val-label">BENCHMARK ACCURACY:</span>
+              <span class="val-num">88.26%</span>
+            </div>
+            <p class="rep-critique">Ignores corpus rarity; common words skew classification.</p>
+          </div>
+
+          <!-- Method 2: TF-IDF (Highlighted) -->
+          <div class="rep-method-card featured">
+            <div class="rep-card-head">
+              <h3 class="rep-name">TF-IDF</h3>
+              <span class="rep-tag selected">SELECTED METHOD</span>
+            </div>
+            <p class="rep-definition">"Weights words according to importance."</p>
+            <div class="rep-benchmark-val">
+              <span class="val-label">TUNED ACCURACY:</span>
+              <span class="val-num">91.96%</span>
+            </div>
+            <p class="rep-critique">Suppresses non-informative words while elevating distinctive sentiment terms.</p>
+          </div>
+
+          <!-- Method 3: N-GRAMS -->
+          <div class="rep-method-card">
+            <div class="rep-card-head">
+              <h3 class="rep-name">N-GRAMS</h3>
+              <span class="rep-tag">FEATURE AUGMENTATION</span>
+            </div>
+            <p class="rep-definition">"Captures short sequences of words."</p>
+            <div class="rep-benchmark-val">
+              <span class="val-label">BIGRAM INCLUSION:</span>
+              <span class="val-num">20,000 N-Grams</span>
+            </div>
+            <p class="rep-critique">Preserves critical negation semantics such as "not good" or "never recommend".</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 10 — SYSTEM ARCHITECTURE
+         ====================================================================== -->
+    <section id="architecture" class="section-block" aria-labelledby="arch-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">09 / ARCHITECTURE</span>
+          <h2 id="arch-heading" class="section-primary-heading">FROM BROWSER TO MODEL.</h2>
+        </div>
+
+        <!-- Visual System Architecture Diagram -->
+        <div class="architecture-diagram-wrapper">
+          
+          <!-- Client Layer -->
+          <div class="arch-layer-box client">
+            <div class="layer-header">CLIENT LAYER</div>
+            <div class="layer-body">
+              <div class="arch-node-pill">USER / BROWSER</div>
+              <div class="arch-arrow-down">↓ (HTTP POST payload)</div>
+              <div class="arch-node-pill">FRONTEND (Vite / Vanilla JS)</div>
+            </div>
+          </div>
+
+          <!-- Architecture Flow Connector -->
+          <div class="arch-inter-connector" aria-hidden="true">
+            <span>JSON REQUEST OVER REST</span>
+            <span>↓</span>
+          </div>
+
+          <!-- Dockerized Backend Layer -->
+          <div class="arch-docker-container">
+            <div class="docker-container-banner">
+              <span class="docker-icon">🐳</span>
+              <span class="docker-title">DOCKER CONTAINERIZED BACKEND SERVICE (PORT 8000)</span>
+            </div>
+
+            <div class="docker-internal-grid">
+              
+              <div class="docker-subnode">
+                <span class="subnode-num">01</span>
+                <span class="subnode-name">FASTAPI SERVER</span>
+                <span class="subnode-detail">Uvicorn ASGI • CORS • Pydantic Schema</span>
+              </div>
+
+              <div class="docker-subnode-arrow">→</div>
+
+              <div class="docker-subnode">
+                <span class="subnode-num">02</span>
+                <span class="subnode-name">PREPROCESSING</span>
+                <span class="subnode-detail">NLTK Regex • Stopword Filter • Lemmatizer</span>
+              </div>
+
+              <div class="docker-subnode-arrow">→</div>
+
+              <div class="docker-subnode">
+                <span class="subnode-num">03</span>
+                <span class="subnode-name">TF-IDF VECTORIZER</span>
+                <span class="subnode-detail">20,000 N-Gram Feature Transform</span>
+              </div>
+
+              <div class="docker-subnode-arrow">→</div>
+
+              <div class="docker-subnode">
+                <span class="subnode-num">04</span>
+                <span class="subnode-name">LOGISTIC REGRESSION</span>
+                <span class="subnode-detail">Inference Engine • Calibrated Probability</span>
+              </div>
+
+            </div>
+
+            <div class="docker-response-strip">
+              <span>OUTPUT: PREDICTION PAYLOAD</span>
+              <span>→ JSON RESPONSE (sentiment, confidence, probabilities, clean_text)</span>
+            </div>
+          </div>
+
+          <!-- Return Flow Connector -->
+          <div class="arch-inter-connector" aria-hidden="true">
+            <span>↓ TELEMETRY PARSED & RENDERED</span>
+          </div>
+
+          <!-- Client Result Return -->
+          <div class="arch-layer-box client-return">
+            <div class="layer-header">DYNAMIC UI UPDATE</div>
+            <div class="layer-body">
+              <div class="arch-node-pill">DYNAMIC BARS • CONFIDENCE • PROCESS TOKENS</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 11 — API SPECIFICATION
+         ====================================================================== -->
+    <section id="api" class="section-block" aria-labelledby="api-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">10 / API</span>
+          <h2 id="api-heading" class="section-primary-heading">READY FOR INTEGRATION.</h2>
+        </div>
+
+        <div class="api-endpoints-layout">
+          
+          <!-- Endpoint 1: Predict -->
+          <div class="api-spec-card">
+            <div class="api-card-header">
+              <span class="http-badge post">POST</span>
+              <span class="endpoint-path">/api/v1/predict</span>
+              <span class="endpoint-desc">Inference Endpoint</span>
+            </div>
+
+            <div class="code-split-grid">
+              <!-- Request -->
+              <div class="code-box">
+                <div class="code-box-header">REQUEST BODY</div>
+                <pre class="code-snippet"><code>{
+  "text": "The product is excellent."
+}</code></pre>
+              </div>
+
+              <!-- Response -->
+              <div class="code-box">
+                <div class="code-box-header">EXAMPLE RESPONSE</div>
+                <pre class="code-snippet"><code>{
+  "sentiment": "positive",
+  "confidence": 0.97,
+  "probabilities": {
+    "negative": 0.03,
+    "positive": 0.97
+  }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Endpoint 2: Health -->
+          <div class="api-spec-card compact">
+            <div class="api-card-header">
+              <span class="http-badge get">GET</span>
+              <span class="endpoint-path">/health</span>
+              <span class="endpoint-desc">Health Check & Engine Telemetry</span>
+            </div>
+
+            <div class="health-status-display-row">
+              <div class="health-indicator-box">
+                <span class="health-dot"></span>
+                <span>STATUS: ONLINE</span>
+              </div>
+              <div class="health-telemetry-box">
+                <span>FastAPI 0.115+</span> • <span>Uvicorn 0.34+</span> • <span>Model Loaded: True</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 12 — TECHNOLOGY STACK
+         ====================================================================== -->
+    <section id="stack" class="section-block" aria-labelledby="stack-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">TECH // ECOSYSTEM</span>
+          <h2 id="stack-heading" class="section-primary-heading">PRODUCTION TECHNOLOGY STACK.</h2>
+        </div>
+
+        <!-- Clean Grid of Verified Tools -->
+        <div class="tools-badges-grid">
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq red"></span>
+            <span class="tool-name">Python</span>
+            <span class="tool-role">Core Runtime</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq blue"></span>
+            <span class="tool-name">FastAPI</span>
+            <span class="tool-role">REST API</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq yellow"></span>
+            <span class="tool-name">scikit-learn</span>
+            <span class="tool-role">ML & TF-IDF</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq orange"></span>
+            <span class="tool-name">NLTK</span>
+            <span class="tool-role">NLP Processing</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq green"></span>
+            <span class="tool-name">Pandas</span>
+            <span class="tool-role">Data Pipelines</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq red"></span>
+            <span class="tool-name">NumPy</span>
+            <span class="tool-role">Matrix Operations</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq blue"></span>
+            <span class="tool-name">Pydantic</span>
+            <span class="tool-role">Type Validation</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq yellow"></span>
+            <span class="tool-name">Docker</span>
+            <span class="tool-role">Containerization</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq orange"></span>
+            <span class="tool-name">Docker Compose</span>
+            <span class="tool-role">Orchestration</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq green"></span>
+            <span class="tool-name">Vite</span>
+            <span class="tool-role">Build Tooling</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq red"></span>
+            <span class="tool-name">Vanilla JS</span>
+            <span class="tool-role">Interactive Logic</span>
+          </div>
+
+          <div class="tool-badge-box">
+            <span class="tool-accent-sq blue"></span>
+            <span class="tool-name">CSS3 / HTML5</span>
+            <span class="tool-role">Bauhaus Design</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 13 — ABOUT THE PROJECT
+         ====================================================================== -->
+    <section id="about" class="section-block scroll-target" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="section-header-block">
+          <span class="section-numeric-tag">11 / PROJECT</span>
+          <h2 id="about-heading" class="section-primary-heading">BUILT FOR PRACTICAL ML.</h2>
+        </div>
+
+        <div class="project-about-card">
+          <p class="project-lead-paragraph">
+            "An end-to-end sentiment classification system that transforms customer reviews into actionable sentiment predictions."
+          </p>
+
+          <!-- Compact Project Attributes Matrix -->
+          <div class="project-matrix-grid">
+            <div class="matrix-cell">
+              <span class="matrix-key">TASK</span>
+              <span class="matrix-val">Binary Sentiment Classification</span>
+            </div>
+
+            <div class="matrix-cell">
+              <span class="matrix-key">INPUT</span>
+              <span class="matrix-val">Customer Review Text</span>
+            </div>
+
+            <div class="matrix-cell">
+              <span class="matrix-key">FEATURES</span>
+              <span class="matrix-val">TF-IDF (20,000 N-Grams)</span>
+            </div>
+
+            <div class="matrix-cell">
+              <span class="matrix-key">MODEL</span>
+              <span class="matrix-val">Logistic Regression (L2)</span>
+            </div>
+
+            <div class="matrix-cell">
+              <span class="matrix-key">API</span>
+              <span class="matrix-val">FastAPI REST Service</span>
+            </div>
+
+            <div class="matrix-cell">
+              <span class="matrix-key">DEPLOYMENT</span>
+              <span class="matrix-val">Docker & Docker Compose</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 14 — DEVELOPER PORTFOLIO
+         ====================================================================== -->
+    <section id="developer" class="section-block developer-section" aria-labelledby="dev-heading">
+      <div class="container">
+        <div class="developer-hero-box">
+          <span class="dev-eyebrow">PORTFOLIO SPOTLIGHT</span>
+          <h2 id="dev-heading" class="dev-main-title">BUILT BY MUHAMMED DHANISH</h2>
+          <div class="dev-role-tags">
+            <span class="role-tag">AI / ML Engineer</span>
+            <span class="role-sep">•</span>
+            <span class="role-tag">Data Scientist</span>
+            <span class="role-sep">•</span>
+            <span class="role-tag">Statistician</span>
+          </div>
+
+          <!-- Prominent Social Portfolio Buttons -->
+          <div class="dev-action-buttons">
+            <a
+              id="linkedinLink"
+              href="https://www.linkedin.com/in/LINKEDIN_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-portfolio-action linkedin"
+              aria-label="Muhammed Dhanish on LinkedIn"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LINKEDIN ↗</span>
+            </a>
+
+            <a
+              id="githubLink"
+              href="https://github.com/GITHUB_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-portfolio-action github"
+              aria-label="Muhammed Dhanish on GitHub"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span>GITHUB ↗</span>
+            </a>
+
+            <a
+              href="http://localhost:8000/docs"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-portfolio-action docs"
+            >
+              <span>API DOCS ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       SECTION 15 — FOOTER
+       ====================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-row">
+        <div class="footer-brand-col">
+          <span class="footer-brand-title">REVIEW//AI</span>
+          <p class="footer-brand-desc">Customer Review Sentiment Analysis</p>
+        </div>
+
+        <div class="footer-center-col">
+          <span class="footer-center-name">Created by MUHAMMED DHANISH</span>
+          <p class="footer-center-role">AI / ML • Statistics • Data Science</p>
+        </div>
+
+        <div class="footer-links-col">
+          <a id="footerLinkedin" href="https://www.linkedin.com/in/LINKEDIN_URL" target="_blank" rel="noopener noreferrer" class="footer-link-text">LinkedIn ↗</a>
+          <a id="footerGithub" href="https://github.com/GITHUB_URL" target="_blank" rel="noopener noreferrer" class="footer-link-text">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div class="colophon-text">
+          © 2026 MUHAMMED DHANISH • ALL RIGHTS RESERVED
+        </div>
+        <div class="footer-sublinks">
+          <a href="#hero" class="footer-nav-anchor">Back to Top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

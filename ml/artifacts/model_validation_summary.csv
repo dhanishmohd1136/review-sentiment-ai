@@ -1,0 +1,10 @@
+Metric,Value
+Accuracy,0.9196
+Precision,0.9086482275029217
+Recall,0.933
+F1 Score,0.9206631142687981
+Test Samples,10000.0
+Number of Features,20000.0
+Incorrect Predictions,804.0
+High Confidence Errors,19.0
+Low Confidence Predictions,904.0
