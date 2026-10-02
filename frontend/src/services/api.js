@@ -3,7 +3,9 @@
  * Centralized client for communicating with the FastAPI Sentiment Analysis backend.
  */
 
-export const API_BASE_URL = "http://localhost:8000";
+export const API_BASE_URL = (
+  import.meta.env?.VITE_API_URL || "http://localhost:8000"
+).replace(/\/$/, "");
 
 // Portfolio Social URL Placeholders (Configurable)
 export const LINKEDIN_URL = "https://www.linkedin.com/in/LINKEDIN_URL";

@@ -9,6 +9,7 @@ import {
   predictSentiment,
   LINKEDIN_URL,
   GITHUB_URL,
+  API_BASE_URL,
 } from "./services/api.js";
 
 // ==========================================================================
@@ -99,6 +100,10 @@ function initDomReferences() {
   }
   if (els.footerGithub && GITHUB_URL) {
     els.footerGithub.href = GITHUB_URL;
+  }
+  const footerDocsLink = document.getElementById("footerDocsLink");
+  if (footerDocsLink && API_BASE_URL) {
+    footerDocsLink.href = `${API_BASE_URL}/docs`;
   }
 }
 
