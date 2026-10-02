@@ -1,10 +1,14 @@
 # REVIEW//ANALYZER • Customer Review Sentiment Intelligence
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Online-success?style=for-the-badge&logo=render)](https://review-sentiment-ai.onrender.com/#analyzer)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688.svg)](https://fastapi.tiangolo.com/)
 [![Vite](https://img.shields.io/badge/Vite-5.x-646CFF.svg)](https://vitejs.dev/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4%2B-F7931E.svg)](https://scikit-learn.org/)
 [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED.svg)](https://www.docker.com/)
+
+> 🌐 **Live Production App**: **[https://review-sentiment-ai.onrender.com/#analyzer](https://review-sentiment-ai.onrender.com/#analyzer)**  
+> Experience the real-time Bauhaus Neo-Brutalist sentiment analyzer directly in your browser.
 
 A production-grade, end-to-end customer review sentiment analysis platform featuring a **Bauhaus-inspired Neo-Brutalist design language** and **Swiss International Typographic Style**, powered by a high-throughput **FastAPI** inference backend and an optimized **TF-IDF + Logistic Regression** NLP pipeline.
 
@@ -125,6 +129,11 @@ Ensure the following tools are installed on your workstation:
 - **Python**: Version `3.10` or higher ([Download Python](https://www.python.org/downloads/))
 - **Node.js**: Version `18.0` or higher & npm ([Download Node.js](https://nodejs.org/))
 - **Docker & Docker Compose** *(Optional, recommended for instant one-command deployment)*: [Download Docker](https://www.docker.com/products/docker-desktop/)
+
+### 🌐 Try the Live Demo
+
+You can test the deployed application instantly without running code locally:  
+👉 **[Open Live Sentiment Analyzer (Render)](https://review-sentiment-ai.onrender.com/#analyzer)**
 
 ---
 
